@@ -5,11 +5,11 @@ public class Rec03 {
     public static void main(String[] args) {
 
         int[] arr = new int[] {2, 5, 6, 7, 9, 12};
-        int searchElement = 6;
+        int searchElement = 5;
         System.out.printf("array element sum is %d%n", sumArr(arr));
         System.out.printf("array element count is %d%n", countArr(arr));
         System.out.printf("array biggest number is %d%n", maxNumber(arr));
-        System.out.printf("%d is in index %d%n", searchElement, binarySearchRec(searchElement, arr));
+        System.out.printf("%d is in index %d%n", searchElement, binarySearchRec(searchElement, arr, 0, arr.length - 1));
     }
 
     public static int sumArr(int[] arr) {
@@ -51,32 +51,19 @@ public class Rec03 {
     }
 
 
-    public static int binarySearchRec(int number, int[] arr) {
-
-        int mid = (int)Math.floor((double) arr.length / 2);
-        int low = 0;
-        int high = arr.length - 1;
-
-        if (low >= high) {
-            return 0;
+    public static int binarySearchRec(int number, int[] arr, int low, int high) {
+        if (low > high) {
+            return -1;
         }
+
+        int mid = (low + high) / 2;
 
         if (arr[mid] == number) {
             return mid;
         } else if (arr[mid] > number) {
-
-            int restArrLength = (int)Math.floor((double) arr.length / 2);
-            int[] newArr = new int[restArrLength];
-            System.arraycopy(arr, low, newArr, 0, restArrLength);
-
-            return binarySearchRec(number, newArr);
+            return binarySearchRec(number, arr, low, mid - 1);
         } else {
-
-            int restArrLength = (int)Math.floor((double) arr.length / 2);
-            int[] newArr = new int[restArrLength];
-            System.arraycopy(arr, mid, newArr, 0, restArrLength);
-
-            return binarySearchRec(number, newArr);
+            return binarySearchRec(number, arr, mid + 1, high);
         }
     }
 }
