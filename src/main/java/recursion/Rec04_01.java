@@ -2,10 +2,10 @@ package recursion;
 
 import java.util.Arrays;
 
-public class Rec04 {
+public class Rec04_01 {
 
     public static void main(String[] args) {
-        int[] arr = new int[] {10, 5, 2, 3};
+        int[] arr = new int[] {10, 5, 2, 3, 9, 4, 1};
         System.out.printf("before sorting %s%n", Arrays.toString(arr));
         quickSort(arr);
         System.out.printf("after sorting %s%n", Arrays.toString(arr));
@@ -45,8 +45,8 @@ public class Rec04 {
                 }
             }
 
-            lessArr = quickSort(lessArr);
-            greaterArr = quickSort(greaterArr);
+            quickSort(lessArr);
+            quickSort(greaterArr);
 
             int addIndex = 0;
             for (int i = addIndex; i < lessArr.length; i++) {
